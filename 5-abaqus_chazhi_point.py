@@ -9,7 +9,7 @@ import math
 myModel = mdb.models[mdb.models.keys()[0]]
 
 # 获取集合
-nset = myModel.rootAssembly.sets['Set-hezai']
+nset = myModel.rootAssembly.sets['Set-hezai']              ###$change
 
 # 初始化空列表用于存储坐标
 coords = []
@@ -22,9 +22,9 @@ for node in nset.nodes:
 
 cylindrical_coords=[]
 for idx, (x, y, z) in enumerate(coords):
-    r = math.sqrt(x**2 + y**2)
-    theta = math.atan2(y, x)
-    cylindrical_coords.append((r, theta, z, idx))
+    r = math.sqrt(x**2 + y**2)                              ###$change
+    theta = math.atan2(y, x)                              ###$change
+    cylindrical_coords.append((r, theta, z, idx))               ###$change
 
 cylindrical_coords.sort(key=lambda coord: coord[1])
 
