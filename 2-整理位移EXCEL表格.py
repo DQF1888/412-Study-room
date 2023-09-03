@@ -11,7 +11,7 @@ import pandas as pd
 with pd.ExcelWriter('combined.xlsx', engine='openpyxl') as writer:
     
     # 循环处理每个 csv 文件
-    for i in range(1, 27): # 假设文件名的数字是从 1 到 3
+    for i in range(1, 27): # 假设文件名的数字是从 1 到 3                                  ###$change
         csv_filename = f"shell_disp_{i}.csv"
         
         try:
