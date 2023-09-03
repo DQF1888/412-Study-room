@@ -11,11 +11,11 @@ import csv
 it.command("python-reset-state false")
 
 
-def shell_disp(y_distance,y_zone_size,csv_path):
+def shell_disp(y_distance,y_zone_size,csv_path):            ###$change
     node_=[]
-    for shell_node in it.gridpoint.list():
-        if shell_node.in_group('ti'):
-            if shell_node.pos()[0]==-30:
+    for shell_node in it.gridpoint.list():                  
+        if shell_node.in_group('ti'):                       ###$change
+            if shell_node.pos()[0]==-30:                    ###$change
                 node_.append(shell_node.pos())
                 
     
@@ -26,9 +26,9 @@ def shell_disp(y_distance,y_zone_size,csv_path):
 
     
     for idx, (x, y, z) in enumerate(unique_vec_list):
-        r = math.sqrt((y-0)**2 + (z-7.55)**2)
-        theta = math.atan2((z-7.55), (y-0))
-        cylindrical_coords.append((r, theta, x, idx))
+        r = math.sqrt((y-0)**2 + (z-7.55)**2)                              ###$change
+        theta = math.atan2((z-7.55), (y-0))                                ###$change
+        cylindrical_coords.append((r, theta, x, idx))                      ###$change
 
     cylindrical_coords.sort(key=lambda coord: coord[1])
 
@@ -42,23 +42,23 @@ def shell_disp(y_distance,y_zone_size,csv_path):
     for shell_ in sorted_cartesian_coords:
         count+=1
         disp=[]
-        for num in range(61):
-            position_vec=[num-30,shell_[1],shell_[2]]
+        for num in range(61):                                          ###$change
+            position_vec=[num-30,shell_[1],shell_[2]]                  ###$change
 
             node_object=it.gridpoint.near(tuple(position_vec))
             disp.append(node_object.disp())
             
         name='shell_disp_'+str(count)+'.csv'
             
-        csv_path=r'C:\Users\admin\Desktop\EXCEL'+'\\'+name
+        csv_path=r'C:\Users\admin\Desktop\EXCEL'+'\\'+name             ###$change
 
        
-        with open(csv_path, 'wb') as csvfile:  
+        with open(csv_path, 'wb') as csvfile:                         
             writer = csv.writer(csvfile)
             for row in disp:
                 writer.writerow(row)
 
 if __name__ == "__main__":
-    shell_disp(y_distance=10,y_zone_size=1,csv_path='shell_disp.csv')  
+    shell_disp(y_distance=10,y_zone_size=1,csv_path='shell_disp.csv')                ###$change
 
 
