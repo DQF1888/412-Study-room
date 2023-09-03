@@ -39,7 +39,7 @@ with open("fitted_equations.txt", "w") as file:
 
         for j, col in enumerate(['X_Displacement', 'Y_Displacement', 'Z_Displacement']):
             y_data = df[col].apply(lambda x: float(x)).values
-            params = np.polyfit(x_data, y_data, 12)
+            params = np.polyfit(x_data, y_data, 12)                                  ###$change
             
             # 使用更密集的x值生成圆滑的曲线
             x_smooth = np.linspace(x_data.min(), x_data.max(), 500)
@@ -49,10 +49,10 @@ with open("fitted_equations.txt", "w") as file:
             ax.plot(x_smooth, y_fit, color=line_colors[j], linewidth=line_width, label=f"{col} (拟合曲线)")
 
             # 将拟合公式的参数写入TXT文件
-            equation_terms = [f"{p:.30f}x^{i}" for i, p in enumerate(reversed(params))]
+            equation_terms = [f"{p:.30f}x^{i}" for i, p in enumerate(reversed(params))]                   ###$change
             equation_str = " + ".join(equation_terms)
             file.write(f"{col} 拟合公式:\n")
-            file.write(equation_str + '\n\n')  # 加入空行使得每个公式之间有间隔
+            file.write(equation_str + '\n\n')  # 加入空行使得每个公式之间有间隔 
 
         ax.legend()
         plt.tight_layout()
