@@ -32,7 +32,7 @@ def zhuhuan(formula):
 myModel = mdb.models[mdb.models.keys()[0]]
 
 # 获取集合
-nset = myModel.rootAssembly.sets['Set-hezai']
+nset = myModel.rootAssembly.sets['Set-hezai']              ###$change
 
 # 初始化空列表用于存储坐标
 coords = []
@@ -45,52 +45,52 @@ for node in nset.nodes:
 
 cylindrical_coords=[]
 for idx, (x, y, z) in enumerate(coords):
-    r = math.sqrt(x**2 + y**2)
-    theta = math.atan2(y, x)
-    cylindrical_coords.append((r, theta, z, idx))
+    r = math.sqrt(x**2 + y**2)                                 ###$change
+    theta = math.atan2(y, x)                                   ###$change
+    cylindrical_coords.append((r, theta, z, idx))              ###$change
 
 cylindrical_coords.sort(key=lambda coord: coord[1])
 
 sorted_cartesian_coords = [coords[coord[3]] for coord in cylindrical_coords]
 
-a = mdb.models['Model-1'].rootAssembly
+a = mdb.models['Model-1'].rootAssembly                     ###$change
 
-n1 = a.instances['model-mesh-1-1'].nodes
+n1 = a.instances['model-mesh-1-1'].nodes                       ###$change
 
-mdb.models['Model-1'].SmoothStepAmplitude(name='Amp-2', timeSpan=STEP, data=((
+mdb.models['Model-1'].SmoothStepAmplitude(name='Amp-2', timeSpan=STEP, data=((                         ###$change
     0.0, 0.0), (1.0, 3.0)))
 
 count=0
 for n in sorted_cartesian_coords:
     count+=1
     
-    with open(r'C:\Users\CYZ\Desktop\flac001\fixed-chazhi-function.txt', 'r',) as file:
+    with open(r'C:\Users\CYZ\Desktop\flac001\fixed-chazhi-function.txt', 'r',) as file:                   ###$change
         lines = file.readlines()
         
-    x_formula = lines[6*count-5].strip()
-    y_formula = lines[6*count-2].strip()
+    x_formula = lines[6*count-5].strip()                                                                   ###$change
+    y_formula = lines[6*count-2].strip()                                                                    ###$change
     
     
 
     
-    mdb.models['Model-1'].ExpressionField(name='X-weiyi-'+str(count), localCsys=None, 
+    mdb.models['Model-1'].ExpressionField(name='X-weiyi-'+str(count), localCsys=None,                    ###$change
         description='', expression=zhuhuan(x_formula))
     
-    mdb.models['Model-1'].ExpressionField(name='Y-weiyi-'+str(count), localCsys=None, 
+    mdb.models['Model-1'].ExpressionField(name='Y-weiyi-'+str(count), localCsys=None,                      ###$change
         description='', expression=zhuhuan(y_formula))
     
 
     
 
-    node_select=n1.getByBoundingCylinder((n[0],n[1],-0.5),(n[0],n[1],90.5),0.001)
+    node_select=n1.getByBoundingCylinder((n[0],n[1],-0.5),(n[0],n[1],90.5),0.001)                     ###$change
     region = a.Set(nodes=node_select, name='Set-jiedian-'+str(count))
     
-    mdb.models['Model-1'].DisplacementBC(name='X-'+str(count), createStepName='Step-1', 
+    mdb.models['Model-1'].DisplacementBC(name='X-'+str(count), createStepName='Step-1',                    ###$change
         region=region, u1=1.0, u2=UNSET, u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET, 
         amplitude='Amp-2', fixed=OFF, distributionType=FIELD, 
         fieldName='X-weiyi-'+str(count), localCsys=None)
     
-    mdb.models['Model-1'].DisplacementBC(name='Y-'+str(count), createStepName='Step-1', 
+    mdb.models['Model-1'].DisplacementBC(name='Y-'+str(count), createStepName='Step-1',                ###$change
         region=region, u1=UNSET, u2=1.0, u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET, 
         amplitude='Amp-2', fixed=OFF, distributionType=FIELD, 
         fieldName='Y-weiyi-'+str(count), localCsys=None)
