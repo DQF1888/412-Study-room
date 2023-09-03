@@ -137,9 +137,9 @@ class App:
         # (Code for loading and plotting data is here)
         df1 = pd.read_excel(filepath, sheet_name=0)
         df2 = pd.read_excel(filepath, sheet_name=1)
-        x1, y1 = df1['Y'], df1['Z']
-        x2, y2 = df2['X'], df2['Y']
-
+        x1, y1 = df1['Y'], df1['Z']               ###$change
+        x2, y2 = df2['X'], df2['Y']                ###$change
+ 
         self.ax.clear()
 
         # Resetting 4-quadrant coordinate system
@@ -286,13 +286,13 @@ class App:
                     var_dict[var] = coefficients
                     
                     # If both X and Z coefficients are extracted, append them to green_points
-                    if 'Y' in var_dict and 'Z' in var_dict:
+                    if 'Y' in var_dict and 'Z' in var_dict:                         ###$change
                         green_points.append(var_dict.copy())
                         var_dict.clear()
         print(green_points)
 
-        self.green_points_coef_x = [point['Y'] for point in green_points]
-        self.green_points_coef_z = [point['Z'] for point in green_points]
+        self.green_points_coef_x = [point['Y'] for point in green_points]                  ###$change
+        self.green_points_coef_z = [point['Z'] for point in green_points]                  ###$change
         #print(self.green_points_coef_x)
         #print("Extracted coefficients for each green point:", green_points)
 
@@ -362,8 +362,8 @@ class App:
     def export_polynomial_txt(self):
         with open('fixed-chazhi-function.txt','w',encoding='utf-8') as f:
             for coeff_dict_x, coeff_dict_z in zip(self.purple_points_coef_x,self.purple_points_coef_z):
-                f.write("Y_Displacement 拟合公式:"+'\n'+str(self.generate_polynomial_string(coeff_dict_x))+'\n\n')
-                f.write("Z_Displacement 拟合公式:"+'\n'+str(self.generate_polynomial_string(coeff_dict_z))+'\n\n')
+                f.write("Y_Displacement 拟合公式:"+'\n'+str(self.generate_polynomial_string(coeff_dict_x))+'\n\n')            ###$change
+                f.write("Z_Displacement 拟合公式:"+'\n'+str(self.generate_polynomial_string(coeff_dict_z))+'\n\n')                ###$change
 
             f.close()
 
