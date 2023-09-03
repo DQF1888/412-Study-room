@@ -6,10 +6,10 @@ abaqus_df = pd.read_csv('coordinates-abaqus.csv')
 flac_df = pd.read_csv('coordinates-flac.csv')
 
 # 从coordinates-abaqus.csv中删除Z列
-abaqus_df.drop(['Z'], axis=1, inplace=True)
+abaqus_df.drop(['Z'], axis=1, inplace=True)               ###$change
 
 # 从coordinates-flac.csv中删除X列
-flac_df.drop(['X'], axis=1, inplace=True)
+flac_df.drop(['X'], axis=1, inplace=True)                    ###$change
 
 # 清除两个数据表中的空单元格
 abaqus_df.dropna(inplace=True)
